@@ -37,6 +37,8 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=qcom
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/linaro-lto/bin
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 
 # Audio
 AUDIO_FEATURE_ENABLED_FM := true
@@ -104,6 +106,23 @@ WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/prima_wlan/parameters/fwpath"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+# ROM Optimizations
+BONE_STOCK := false
+NO_DEBUG_FRAME_POINTERS := true
+NO_DEBUG_SYMBOL_FLAGS := true
+MAXIMUM_OVERDRIVE := true
+USE_GRAPHITE := true
+USE_FSTRICT_FLAGS := true
+USE_BINARY_FLAGS := true
+USE_EXTRA_CLANG_FLAGS := true
+ADDITIONAL_TARGET_ARM_OPT := true
+ADDITIONAL_TARGET_THUMB_OPT := true
+CANDY_ARM_OPT_LEVEL := -O3
+CANDY_THUMB_OPT_LEVEL := -O3
+FSTRICT_ALIASING_WARNING_LEVEL := 3
+USE_LTO := true
+ARCHIDROID_IGNORE_RECOVERY_SIZE := true
 
 # inherit from the proprietary version
 -include vendor/htc/s4-common/BoardConfigVendor.mk
